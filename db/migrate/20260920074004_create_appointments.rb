@@ -5,7 +5,7 @@ class CreateAppointments < ActiveRecord::Migration[8.1]
       t.string :email, null: false
       t.string :phone
       t.string :note, limit: 200
-      t.datetime :start_time, null: false
+      t.datetime :start_at, null: false
       t.datetime :cancelled_at
 
       t.timestamps

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_20_074004) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_20_120431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,7 +21,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_20_074004) do
     t.string "name", null: false
     t.string "note", limit: 200
     t.string "phone"
-    t.datetime "start_time", null: false
+    t.datetime "start_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["start_at"], name: "index_appointments_on_active_start_at", unique: true, where: "(cancelled_at IS NULL)"
   end
 end
