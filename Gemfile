@@ -27,7 +27,7 @@ gem "kamal", require: false
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
-gem "json", "~> 2.15"
+gem "json", "~> 3.0"
 
 gem "pagy", "~> 43.6"
 
