@@ -8,6 +8,7 @@ class Appointment < ApplicationRecord
 
 
   scope :active, -> { where(cancelled_at: nil) }
+  scope :upcoming, -> { where(start_at: Time.current..) }
 
   def cancel!
     update!(cancelled_at: Time.current)

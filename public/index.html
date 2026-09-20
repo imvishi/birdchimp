@@ -45,8 +45,14 @@
     </form>
 
     <section class="panel">
-      <h2>Appointments <small id="list-count"></small></h2>
-      <p id="list-empty" class="muted" hidden>Nothing booked yet.</p>
+      <header class="panel__header">
+        <h2>Appointments <small id="list-count"></small></h2>
+        <div class="segmented" role="group" aria-label="Which appointments to show">
+          <button type="button" class="button button--ghost is-active" data-scope="upcoming">Upcoming</button>
+          <button type="button" class="button button--ghost" data-scope="all">All</button>
+        </div>
+      </header>
+      <p id="list-empty" class="muted" hidden>No appointments to show.</p>
       <table class="list" id="list" hidden>
         <thead>
           <tr><th>When</th><th>Name</th><th>Email</th><th>Phone</th><th>Reason</th><th></th></tr>

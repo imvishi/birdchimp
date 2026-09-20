@@ -1,7 +1,5 @@
 module Api
   class BaseController < ApplicationController
-    skip_forgery_protection
-
     rescue_from ActiveRecord::RecordNotFound do |error|
       render_error :not_found, "#{error.model.to_s.underscore.humanize} not found.", status: :not_found
     end

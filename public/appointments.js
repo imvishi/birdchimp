@@ -31,6 +31,7 @@ let monday = mondayOf(todayInIST());
 if (isWeekend(todayInIST())) monday = addDays(monday, 7);
 let selectedSlot = null;
 let nextCursor = null;
+let listScope = "upcoming"; // or "all" (includes past bookings)
 
 const $ = (id) => document.getElementById(id);
 
@@ -97,7 +98,8 @@ function appointmentRow(a) {
 }
 
 async function renderList(cursor = null) {
-  const { appointments, next_cursor } = await api(`${API}?limit=20${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`);
+  const query = `limit=20${listScope === "upcoming" ? "&upcoming=true" : ""}${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`;
+  const { appointments, next_cursor } = await api(`${API}?${query}`);
   if (!cursor) $("list-body").innerHTML = "";
   $("list-body").insertAdjacentHTML("beforeend", appointments.map(appointmentRow).join(""));
   nextCursor = next_cursor;
@@ -160,6 +162,14 @@ $("list-body").addEventListener("click", async (event) => {
   } catch (error) {
     flash(error.message, "error");
   }
+});
+
+document.querySelector(".segmented").addEventListener("click", (event) => {
+  const scope = event.target.dataset.scope;
+  if (!scope || scope === listScope) return;
+  listScope = scope;
+  document.querySelectorAll(".segmented [data-scope]").forEach((b) => b.classList.toggle("is-active", b.dataset.scope === scope));
+  renderList().catch((error) => flash(error.message, "error"));
 });
 
 $("list-more").addEventListener("click", () => renderList(nextCursor).catch((error) => flash(error.message, "error")));

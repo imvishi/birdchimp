@@ -9,10 +9,12 @@ module Api
       render_error :invalid_request, error.message, status: :bad_request
     end
 
-    # GET /api/appointments?limit=20&cursor=<next_cursor from the previous page>
+    # GET /api/appointments?limit=20&cursor=<next_cursor from the previous page>&upcoming=true
     def index
-      pagy, appointments = pagy(:keyset, Appointment.active.order(:start_at, :id),
-                                page_key: "cursor", limit: PAGE_SIZE, max_limit: MAX_PAGE_SIZE)
+      appointments = Appointment.active.order(:start_at, :id)
+      appointments = appointments.upcoming if params[:upcoming] == "true"
+
+      pagy, appointments = pagy(:keyset, appointments, page_key: "cursor", limit: PAGE_SIZE, max_limit: MAX_PAGE_SIZE)
 
       render json: {
         appointments: appointments.map { |appointment| AppointmentSerializer.new(appointment) },

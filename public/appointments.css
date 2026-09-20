@@ -75,6 +75,12 @@ h2 small { color: var(--muted); font-weight: normal; }
 .button--danger:hover { background: var(--error-bg); border-color: var(--danger); }
 #list-more { margin-top: 12px; }
 
+.segmented { display: inline-flex; }
+.segmented .button { border-radius: 0; margin-left: -1px; }
+.segmented .button:first-child { border-radius: 8px 0 0 8px; margin-left: 0; }
+.segmented .button:last-child { border-radius: 0 8px 8px 0; }
+.segmented .is-active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; position: relative; }
+
 .list { width: 100%; border-collapse: collapse; }
 .list th, .list td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .list th { font-size: 13px; color: var(--muted); }

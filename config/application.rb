@@ -22,6 +22,9 @@ module Birdchimp
     # in config/environments, which are processed later.
     #
     config.time_zone = "Asia/Kolkata"
+
+    # JSON API plus the static UI in public/. No views, assets, cookies or sessions.
+    config.api_only = true
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
