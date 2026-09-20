@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book an appointment</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/appointments.css">
+</head>
+<body>
+  <main class="page">
+    <p id="flash" class="flash" hidden></p>
+
+    <form id="booking" class="booking">
+      <section class="panel">
+        <header class="panel__header">
+          <h1>Pick a slot</h1>
+          <nav class="week-nav" aria-label="Week">
+            <button type="button" class="button button--ghost" data-week="-1">‹ Prev</button>
+            <strong id="week-label"></strong>
+            <button type="button" class="button button--ghost" data-week="+1">Next ›</button>
+            <button type="button" class="button button--ghost" data-week="0">This week</button>
+          </nav>
+        </header>
+
+        <table class="grid">
+          <thead><tr id="grid-days"></tr></thead>
+          <tbody id="grid-body"></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Your details</h2>
+        <p id="form-error" class="error" hidden></p>
+
+        <div class="fields">
+          <p><label for="name">Name</label><input id="name" name="name" required maxlength="100" autocomplete="name"></p>
+          <p><label for="email">Email</label><input id="email" name="email" type="email" required maxlength="100" autocomplete="email"></p>
+          <p><label for="phone">Phone</label><input id="phone" name="phone" type="tel" maxlength="20" autocomplete="tel"></p>
+          <p><label for="note">Reason</label><textarea id="note" name="note" maxlength="200" rows="2"></textarea></p>
+        </div>
+
+        <button type="submit" class="button button--primary">Book appointment</button>
+      </section>
+    </form>
+
+    <section class="panel">
+      <h2>Appointments <small id="list-count"></small></h2>
+      <p id="list-empty" class="muted" hidden>Nothing booked yet.</p>
+      <table class="list" id="list" hidden>
+        <thead>
+          <tr><th>When</th><th>Name</th><th>Email</th><th>Phone</th><th>Reason</th><th></th></tr>
+        </thead>
+        <tbody id="list-body"></tbody>
+      </table>
+      <button type="button" id="list-more" class="button button--ghost" hidden>Load more</button>
+    </section>
+  </main>
+
+  <script type="module" src="/appointments.js"></script>
+</body>
+</html>
