@@ -3,7 +3,7 @@ module Slottable
 
   included do
     validates :start_at, presence: true
-    validates :start_at, comparison: { greater_than: -> { Time.current }, message: "must be in the future" }
+    validates :start_at, comparison: { greater_than: -> { Time.current }, message: "must be in the future" }, allow_nil: true
     validate :start_at_is_a_slot
   end
 
