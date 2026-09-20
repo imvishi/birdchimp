@@ -87,9 +87,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
     database: birdchimp_production
-    username: birdchimp
-    password: <%= ENV["BIRDCHIMP_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: birdchimp_production_cache
