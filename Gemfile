@@ -29,7 +29,7 @@ gem "thruster", require: false
 
 gem "json", "~> 2.15"
 
-gem "pagy", "~> 43.6"
+gem "pagy", "~> 43.8"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
